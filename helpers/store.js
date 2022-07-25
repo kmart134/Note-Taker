@@ -1,6 +1,7 @@
 const fs = require('fs');
 const util = require('util');
-const uuid = require('uuid');
+const uuid = require('../helpers/uuid');
+// const uuid = require('uuid');
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -38,7 +39,7 @@ class Store {
         .then((notes) => [...notes, newNote])
         .then((updatedNotes) => this.write(updatedNotes))
         .then(() => newNote);
-        
+
         //get all notes with getNotes()
         //add new note to them
         //take updated set of notes and write them to file using write()
