@@ -1,6 +1,9 @@
 const fs = require('fs');
 const util = require('util');
 const uuid = require('../helpers/uuid');
+const noteArray = require('../db/db.json');
+
+
 // const uuid = require('uuid');
 
 const readFileAsync = util.promisify(fs.readFile);
@@ -48,9 +51,30 @@ class Store {
     }
 
     removeNote(id) {
+        console.log(id);
+        //console log not working
+        getNotes(notes)
+        for (let i= 0; i< noteArray.length; i++) {
+            if (noteArray[i].id == req.params.id) {
+                noteArray.spliced(i, 1);
+                console.log("hey");
+                //console log not working
+                break;
+            }
+        }
+    let jsonFilePath = path.join(__dirname,"/db/db.json");
+    fs.writeFileSync(jsonFilePath, JSON.stringify(noteArray), function (err){
+        if (err){
+            return console.log(err);
+        } else {
+            console.log("your note was deleted"); 
+        }
+    }
         //get all the notes from getNotes()
         //then go through the noted to find the one with the matching id
         //take updated/filtered notes-write them to file usinh write()
+    )
+    res.json(noteArray);
 }}
 
 module.exports= new Store();
