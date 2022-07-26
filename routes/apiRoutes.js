@@ -27,13 +27,11 @@ api.post('/notes', (req, res) =>{
     //then return note with res.json
 })
 
-api.delete('notes/:id', (req, res) => {
+api.delete('/notes/:id', (req, res) => {
     store
-    removeNote(req.params.id)
-    .then(() => res.json({ok:true}))
-    
+    .removeNote(req.params.id)
+    res.json({ok:true})
     //give a status letting you know it's been deleted
-    .catch((err) => res.status(500).json(err));
 })
 
 
